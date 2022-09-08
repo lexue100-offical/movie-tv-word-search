@@ -1,16 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
-import { trpc } from "../utils/trpc";
+import { Search } from "../components";
+import { useResources } from "../requests";
 
 const Home: NextPage = () => {
-	const [value, setValue] = useState<string>("");
-	const { data, refetch } = trpc.useQuery(
-		["resources.resources", { text: value }],
-		{
-			enabled: false,
-		}
-	);
+	const { data } = useResources();
 	return (
 		<>
 			<Head>
@@ -20,24 +14,9 @@ const Home: NextPage = () => {
 			</Head>
 
 			<main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
-				<div>
-					<input
-						type="text"
-						className="p-2 empty:ring-2 empty:ring-green-400 rounded"
-						value={value}
-						onChange={e => setValue(e.target.value)}
-					/>
-					<button
-						onClick={() => {
-							refetch();
-						}}
-					>
-						查询
-					</button>
-				</div>
-
+				<Search />
 				{data?.data && (
-					<div className="grid grid-cols-3 grid-rows-3">
+					<div className="grid grid-cols-3 grid-rows-3 gap-2">
 						{data.data
 							.filter(s => s.endsWith("mp4"))
 							.map(s => (
