@@ -11,10 +11,19 @@ export function parseURL(input: string) {
 	);
 }
 
-export const parseResourceService = async (input: string) => {
+interface ParseResouceProps {
+	searchTerm: string;
+	page?: number;
+}
+
+export const parseResourceService = async ({
+	searchTerm,
+	page,
+}: ParseResouceProps) => {
 	const { data } = await axios.get<string>(BASE_URL, {
 		params: {
-			text: input,
+			text: searchTerm,
+			p: page || 1,
 		},
 	});
 	// This should return the content inside window.__NUXT__

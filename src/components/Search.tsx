@@ -1,5 +1,6 @@
 import { useResources } from "../requests";
 import { useStore } from "@store";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const Search = () => {
 	const searchTerm = useStore(s => s.searchTerm);
@@ -18,9 +19,12 @@ export const Search = () => {
 			<button
 				disabled={isFetching}
 				onClick={search}
-				className="px-2 py-1 rounded bg-green-100 text-green-500 hover:bg-green-200"
+				className="flex items-center btn btn-sm disabled:btn-disabled"
 			>
-				查询
+				查询单词
+				{isFetching && (
+					<AiOutlineLoading3Quarters className="ml-1 animate-spin" />
+				)}
 			</button>
 		</div>
 	);

@@ -4,11 +4,11 @@ import { z } from "zod";
 
 export const resourcesRouter = createRouter().query("resources", {
 	input: z.object({
-		text: z.string(),
+		searchTerm: z.string(),
+		page: z.number().optional(),
 	}),
 	async resolve({ input }) {
-		const { text } = input;
-		const rawString = await parseResourceService(text);
+		const rawString = await parseResourceService(input);
 
 		return rawString;
 	},
