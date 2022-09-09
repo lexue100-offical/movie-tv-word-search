@@ -23,9 +23,10 @@ export const parseResourceService = async ({
 	const { data } = await axios.get<string>(BASE_URL, {
 		params: {
 			text: searchTerm,
-			p: page || 1,
+			// p: page || 1,
 		},
 	});
+	console.log(page)
 	// This should return the content inside window.__NUXT__
 	const firstMatch = data.match(NUXT_REGEX)?.[0]?.replace(/<\/script>/, "");
 

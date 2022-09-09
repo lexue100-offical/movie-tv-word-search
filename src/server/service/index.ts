@@ -1,1 +1,1 @@
-export *  from "./parse-resource"
+export * from "./parse-resource";

@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Search, VideoClip } from "../components";
+import { Header, VideoClip } from "../components";
+import { useStore } from "@store";
 import { useResources } from "../requests";
 import { getNuxtData } from "../utils/getNuxtData";
 
 const Home: NextPage = () => {
 	const { data } = useResources();
 	const clips = getNuxtData(data);
+	const selectedClips = useStore(s => s.selectedClips)
 
 	return (
 		<>
@@ -16,12 +18,13 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-3 space-y-2">
-				<Search />
+				<Header />
+				{clips &&
 				<div className="rounded grid grid-cols-4 gap-3">
-					{clips?.map(clip => (
-						<VideoClip key={clip.uuid} {...clip} />
+					{clips.map(clip => (
+						<VideoClip key={clip.uuid} {...clip} isSelected={!!selectedClips.find(selected => selected.uuid === clip.uuid)} />
 					))}
-				</div>
+				</div>}
 				<footer>
 					<button>prev</button>
 					<button>next</button>
