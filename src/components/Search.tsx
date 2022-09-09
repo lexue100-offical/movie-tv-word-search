@@ -1,13 +1,13 @@
 import { useResources } from "../requests";
 import { useStore } from "@store";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { Loader } from "./Loader";
 
 export const Search = () => {
 	const searchTerm = useStore(s => s.searchTerm);
 	const setSearchTerm = useStore(s => s.setSearchTerm);
 	const { refetch, isFetching } = useResources();
 	const search = () => refetch();
-    
+
 	return (
 		<>
 			<input
@@ -22,9 +22,7 @@ export const Search = () => {
 				className="flex items-center btn btn-primary btn-sm disabled:btn-disabled"
 			>
 				查询单词
-				{isFetching && (
-					<AiOutlineLoading3Quarters className="ml-1 animate-spin" />
-				)}
+				{isFetching && <Loader className="ml-1" />}
 			</button>
 		</>
 	);
