@@ -15,7 +15,12 @@ export const UploadTrigger = () => {
 			>
 				申请上传视频
 			</button>
-			{showUploadModal && <UploadModal />}
+			{showUploadModal && (
+				<UploadModal
+					open={showUploadModal}
+					onClose={toggleUploadModal}
+				/>
+			)}
 		</>
 	);
 };

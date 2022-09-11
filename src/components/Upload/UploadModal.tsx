@@ -1,13 +1,15 @@
+import { Dialog } from "@headlessui/react";
 import { useStore } from "@store";
 import { Video } from "../VideoClip/Video";
 import { ConfirmUpload } from "./ConfirmUpload";
 
-export const UploadModal = () => {
+export const UploadModal = ({ open, onClose }) => {
 	const selectedClips = useStore(s => s.selectedClips);
 
 	return (
-		<div className="modal modal-open cursor-pointer">
-			<div className="modal-box">
+		<Dialog open={open} onClose={onClose} className="modal modal-open">
+			<Dialog.Panel className="modal-box max-w-4xl">
+				<Dialog.Title className="text-2xl">确认</Dialog.Title>
 				<div className="grid grid-cols-3 gap-2">
 					{selectedClips.map(clip => (
 						<Video
@@ -20,10 +22,12 @@ export const UploadModal = () => {
 					))}
 				</div>
 				<div className="modal-action">
-                    <button className="btn btn-ghost">取消</button>
+					<button onClick={onClose} className="btn btn-ghost">
+						取消
+					</button>
 					<ConfirmUpload />
 				</div>
-			</div>
-		</div>
+			</Dialog.Panel>
+		</Dialog>
 	);
 };
