@@ -3,17 +3,17 @@ import { useStore } from "@store";
 import { UploadModal } from "./UploadModal";
 
 export const UploadTrigger = () => {
-	const disabled = useStore(s => s.selectedClips.length === 0);
+	const hasSelectedClips = useStore(s => s.selectedClips.length === 0);
 	const [showUploadModal, toggleUploadModal] = useReducer(s => !s, false);
 
 	return (
 		<>
 			<button
-				disabled={disabled}
+				disabled={hasSelectedClips}
 				className="flex items-center btn disabled:btn-disabled"
 				onClick={toggleUploadModal}
 			>
-				申请上传视频
+				{hasSelectedClips ? "请选中视频上传" : "上传选中视频"}
 			</button>
 			{showUploadModal && (
 				<UploadModal
