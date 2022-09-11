@@ -9,13 +9,16 @@ export const Search = () => {
 	const search = () => refetch();
 
 	return (
-		<>
-			<input
-				type="text"
-				className="px-2 py-1 input input-primary focus:outline-none"
-				value={searchTerm}
-				onChange={e => setSearchTerm(e.target.value)}
-			/>
+		<form className="flex items-center space-x-2">
+			<div className="relative">
+				<input
+					type="text"
+					disabled={isFetching}
+					className="px-2 py-1 input input-primary disabled:input-disabled focus:outline-none"
+					value={searchTerm}
+					onChange={e => setSearchTerm(e.target.value)}
+				/>
+			</div>
 			<button
 				disabled={isFetching}
 				onClick={search}
@@ -24,6 +27,6 @@ export const Search = () => {
 				查询单词
 				{isFetching && <Loader className="ml-1" />}
 			</button>
-		</>
+		</form>
 	);
 };

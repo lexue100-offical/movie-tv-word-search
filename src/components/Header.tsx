@@ -1,11 +1,16 @@
+import { memo } from "react";
 import { Search } from "./Search";
-import { Upload } from "./Upload";
+import { UploadTrigger } from "./Upload/UploadTrigger";
+import { Filters } from "./Filters";
 
-export const Header = () => {
+export const Header = memo(() => {
 	return (
 		<div className="flex space-x-3 items-center">
 			<Search />
-			<Upload />
+			<Filters />
+			<UploadTrigger />
 		</div>
 	);
-};
+});
+
+Header.displayName = "Header";

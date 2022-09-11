@@ -10,6 +10,7 @@ import { genTencentHeaders } from "@utils/crypto";
 interface PullUploadParms {
 	videoUrl: string;
 	videoName?: string;
+	coverUrl?: string;
 }
 
 interface PullUploadResponse {
@@ -20,11 +21,16 @@ interface PullUploadResponse {
 	};
 }
 
-export const pullUpload = async ({ videoName, videoUrl }: PullUploadParms) => {
+export const pullUpload = async ({
+	videoName,
+	videoUrl,
+	coverUrl,
+}: PullUploadParms) => {
 	const payload = JSON.stringify(
 		{
 			MediaUrl: videoUrl,
 			MediaName: videoName,
+			CoverUrl: coverUrl,
 		},
 		null,
 		"\n"

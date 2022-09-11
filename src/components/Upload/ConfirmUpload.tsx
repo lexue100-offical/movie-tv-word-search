@@ -1,8 +1,8 @@
 import { useUploadVideos } from "@requests";
 import { useStore } from "@store";
-import { Loader } from "./Loader";
+import { Loader } from "../Loader";
 
-export const Upload = () => {
+export const ConfirmUpload = () => {
 	const { mutate, isLoading } = useUploadVideos();
 	const clips = useStore(s => s.selectedClips);
 	const uploadVideos = () => {
@@ -10,6 +10,7 @@ export const Upload = () => {
 			clips.map(clip => ({
 				videoUrl: clip.mp4,
 				videoName: clip.transcriptShort,
+				coverUrl: clip.jpg,
 			}))
 		);
 	};
@@ -19,7 +20,7 @@ export const Upload = () => {
 			className="flex items-center btn disabled:btn-disabled"
 			onClick={uploadVideos}
 		>
-			Upload {isLoading && <Loader className="ml-1" />}
+			上传视频 {isLoading && <Loader className="ml-1" />}
 		</button>
 	);
 };

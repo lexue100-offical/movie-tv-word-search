@@ -7,6 +7,7 @@ export const uploadRouter = createRouter().mutation("uploadVideo", {
 		z.object({
 			videoUrl: z.string(),
 			videoName: z.string().optional(),
+			coverUrl: z.string().optional()
 		})
 	),
 	async resolve({ input }) {

@@ -6,11 +6,6 @@ import {
 	API_URL,
 } from "./constants";
 import { genTencentHeaders } from "@utils/crypto";
-
-interface CommitUploadParms {
-	vodSessionKey: string;
-}
-
 interface PullUploadResponse {
 	Response: {
 		TaskId: string;
