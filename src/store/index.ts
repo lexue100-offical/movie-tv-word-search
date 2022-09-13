@@ -1,6 +1,7 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import type { Clip } from "../types/nuxt-data";
+import type { ClassInfo } from "../server/service/get-video-class";
 
 type Store = {
 	searchTerm: string;
@@ -9,6 +10,8 @@ type Store = {
 	setPageNum: (
 		updater: ((previousPageNum: number) => number) | number
 	) => void;
+	videoClass: ClassInfo | undefined;
+	setVideoClass: (info: ClassInfo) => void;
 	selectedClips: Clip[];
 	addClip: (clip: Clip) => void;
 	removeClip: (uuid: string) => void;
@@ -29,6 +32,8 @@ export const useStore = create<Store>()(
 				}
 				return { pageNum: updater };
 			}),
+		videoClass: undefined,
+		setVideoClass: info => set(() => ({ videoClass: info })),
 		selectedClips: [],
 		addClip: (clip: Clip) =>
 			set(({ selectedClips }) => ({

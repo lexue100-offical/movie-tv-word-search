@@ -6,12 +6,14 @@ import cn from "classnames";
 export const ConfirmUpload = () => {
 	const { mutate, isLoading, isSuccess, isError } = useUploadVideos();
 	const clips = useStore(s => s.selectedClips);
+	const classId = useStore(s => s.videoClass?.ClassId);
 	const uploadVideos = () => {
 		mutate(
 			clips.map(clip => ({
 				videoUrl: clip.mp4,
 				videoName: `${clip.videoTitle}-${clip.transcriptShort}`,
 				coverUrl: clip.jpgMed,
+				classId,
 			}))
 		);
 	};

@@ -11,6 +11,7 @@ interface PullUploadParms {
 	videoUrl: string;
 	videoName?: string;
 	coverUrl?: string;
+	classId?: number;
 }
 
 interface PullUploadResponse {
@@ -21,16 +22,22 @@ interface PullUploadResponse {
 	};
 }
 
+/**
+ *
+ * @see https://cloud.tencent.com/document/product/266/31767
+ */
 export const pullUpload = async ({
 	videoName,
 	videoUrl,
 	coverUrl,
+	classId,
 }: PullUploadParms) => {
 	const payload = JSON.stringify(
 		{
 			MediaUrl: videoUrl,
 			MediaName: videoName,
 			CoverUrl: coverUrl,
+			ClassId: classId,
 		},
 		null,
 		"\n"

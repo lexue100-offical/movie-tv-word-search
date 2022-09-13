@@ -7,7 +7,7 @@ import {
 	UPLOAD_VERSION,
 } from "../constants";
 
-type ClassInfo = {
+export type ClassInfo = {
 	ClassId: number;
 	ClassName: string;
 	Level: number;
