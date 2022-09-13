@@ -26,16 +26,16 @@ export const Filters = () => {
 						static
 					>
 						<Menu.Item as="li">
-							<span>仅显示Meme</span>
+							<span>{"仅显示Meme(梗图)"}</span>
 						</Menu.Item>
 						<Menu.Item as="li">
-							<span>仅显示电视剧</span>
+							<span>{"仅显示Show(电视剧)"}</span>
 						</Menu.Item>
 						<Menu.Item as="li">
-							<span>仅显示电影</span>
+							<span>{"仅显示Movie(电影)"}</span>
 						</Menu.Item>
 						<Menu.Item as="li">
-							<span>仅显示音乐</span>
+							<span>{"仅显示Music(音乐)"}</span>
 						</Menu.Item>
 					</Menu.Items>
 				)}

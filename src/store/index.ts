@@ -6,7 +6,9 @@ type Store = {
 	searchTerm: string;
 	setSearchTerm: (input: string) => void;
 	pageNum: number;
-	setPageNum: (updater: (previousPageNum: number) => number | number) => void;
+	setPageNum: (
+		updater: ((previousPageNum: number) => number) | number
+	) => void;
 	selectedClips: Clip[];
 	addClip: (clip: Clip) => void;
 	removeClip: (uuid: string) => void;

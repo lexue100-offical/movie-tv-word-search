@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ChangeEventHandler, useCallback, useEffect } from "react";
 import { useResources } from "@requests";
 import { useStore } from "@store";
 import cn from "classnames";
@@ -8,8 +8,10 @@ function getPages(totalCount: number, currentPageNum: number) {
 	// 默认每页20个
 	const videosPerPage = 20;
 	const pageNum = Math.min(Math.floor(totalCount / videosPerPage), 9);
+	// 定个最小值
+	const actualPageNum = Math.max(currentPageNum || 1);
 
-	return new Array(pageNum).fill(0).map((_, index) => currentPageNum + index);
+	return new Array(pageNum).fill(0).map((_, index) => actualPageNum + index);
 }
 
 export const Footer = () => {
@@ -24,33 +26,42 @@ export const Footer = () => {
 		}
 	}, [pageNum, refetch]);
 
-	return data?.count ? (
-		<footer className="btn-group space-x-4 text-lg">
+	return (
+		<footer className="btn-group text-lg">
 			<input
-				disabled={pageNum === 0}
+				disabled={!data || pageNum === 0}
 				type="radio"
 				name="options"
+				checked={false}
 				data-title="上一页"
 				className="btn"
 				onClick={fetchPreviousPage}
 			/>
-			{Math.floor(data.count / pageNum) > 0 &&
+			{data?.count &&
+				Math.floor(data.count / pageNum) > 0 &&
 				getPages(data.count, pageNum).map((p, index) => (
 					<input
 						key={index}
 						type="radio"
 						name="options"
-						data-title={index + 1}
-						className={cn("btn", p === pageNum && "btn-primary")}
+						value={p + 1}
+						data-title={p + 1}
+						className={cn(
+							"btn",
+							p === (pageNum === 0 ? 1 : pageNum) && "btn-primary"
+						)}
+						onClick={() => setPageNum(p)}
 					/>
 				))}
 			<input
+				disabled={!data}
 				type="radio"
 				name="options"
 				data-title="下一页"
 				className="btn"
 				onClick={fetchNextPage}
+				checked={false}
 			/>
 		</footer>
-	) : null;
+	);
 };
