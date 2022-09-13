@@ -2,6 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { useStore } from "@store";
 import { Video } from "../VideoClip/Video";
 import { ConfirmUpload } from "./ConfirmUpload";
+import { UploadClassSelector } from "./UploadClassSelector";
 
 type DialogProps = Parameters<typeof Dialog>[0];
 
@@ -10,7 +11,8 @@ export const UploadModal = ({ open, onClose }: DialogProps) => {
 
 	return (
 		<Dialog open={open} onClose={onClose} className="modal modal-open">
-			<Dialog.Panel className="modal-box max-w-4xl">
+			<Dialog.Panel className="realtive modal-box max-w-4xl">
+				<UploadClassSelector />
 				<Dialog.Title className="text-center text-2xl">
 					{`请确认要上传的${selectedClips.length}条视频`}
 				</Dialog.Title>

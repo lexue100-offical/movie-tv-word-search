@@ -1,6 +1,6 @@
 import axios from "axios";
 import { genTencentHeaders } from "@utils/crypto";
-import { API_URL, SERVICE_NAME,APPLY_UPLOAD_ACTION,UPLOAD_VERSION } from "./constants";
+import { API_URL, SERVICE_NAME,APPLY_UPLOAD_ACTION,UPLOAD_VERSION } from "../constants";
 
 type ApplyUploadResponse = {
 	Response: {

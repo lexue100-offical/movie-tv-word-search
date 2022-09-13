@@ -23,7 +23,7 @@ export const parseResourceService = async ({
 	const { data } = await axios.get<string>(BASE_URL, {
 		params: {
 			text: searchTerm,
-			p: pageParam,
+			p: pageParam || 1,
 		},
 	});
 	// This should return the content inside window.__NUXT__

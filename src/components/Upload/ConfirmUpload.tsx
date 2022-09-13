@@ -20,8 +20,9 @@ export const ConfirmUpload = () => {
 		<button className="btn">{isError ? "重新上传" : "上传成功"}</button>
 	) : (
 		<button
+			autoFocus
 			disabled={clips.length === 0 || isLoading}
-			className="flex items-center btn btn-info disabled:btn-disabled"
+			className="flex items-center btn btn-primary disabled:btn-disabled"
 			onClick={uploadVideos}
 		>
 			确认上传 {isLoading && <Loader className="ml-1" />}

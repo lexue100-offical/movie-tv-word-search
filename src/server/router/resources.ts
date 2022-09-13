@@ -9,7 +9,6 @@ export const resourcesRouter = createRouter().query("resources", {
 		cursor: z.any().optional(),
 	}),
 	async resolve({ input }) {
-		console.log({ input });
 		const rawString = await parseResourceService(input);
 		return rawString;
 	},

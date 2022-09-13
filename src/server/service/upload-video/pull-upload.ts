@@ -4,7 +4,7 @@ import {
 	PULL_UPLOAD_ACTION,
 	UPLOAD_VERSION,
 	API_URL,
-} from "./constants";
+} from "../constants";
 import { genTencentHeaders } from "@utils/crypto";
 
 interface PullUploadParms {
