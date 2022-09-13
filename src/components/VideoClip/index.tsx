@@ -7,11 +7,11 @@ import { VideoControls } from "./Controls";
 import cn from "classnames";
 import { Video } from "./Video";
 
-interface VideoClipProps extends Clip {
+export interface ClipWithStateProps extends Clip {
 	isSelected: boolean;
 }
 
-export const VideoClip = (clip: VideoClipProps) => {
+export const VideoClip = (clip: ClipWithStateProps) => {
 	const { videoTitle, transcript, textMp4, mp4, jpg, jpgMed, isSelected } =
 		clip;
 
@@ -19,8 +19,8 @@ export const VideoClip = (clip: VideoClipProps) => {
 		<VideoContextProvider>
 			<div
 				className={cn(
-					"relative rounded-sm space-y-1 p-1 ",
-					isSelected && "outline outline-2 outline-teal-700 shadow"
+					"relative rounded-sm space-y-1 p-1 bg-slate-100",
+					isSelected && "outline outline-2 outline-slate-500 shadow"
 				)}
 			>
 				<SelectCheckbox {...clip} />
@@ -34,7 +34,9 @@ export const VideoClip = (clip: VideoClipProps) => {
 						jpg={jpg}
 						className="rounded-sm aspect-video"
 					/>
-					<div className="absolute bottom-0 left-0">{transcript}</div>
+					<div className="absolute bottom-0 left-0 truncate max-w-full text-white">
+						{transcript}
+					</div>
 				</div>
 				<div className="flex flex-wrap">
 					<div className="flex items-center">

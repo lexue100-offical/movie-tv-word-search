@@ -17,6 +17,7 @@ export const UploadModal = ({ open, onClose }: DialogProps) => {
 				<Dialog.Description className="mt-1 text-lg">
 					<li>{"默认上传标题为'标题-内容'的形式"}</li>
 					<li>{"默认用高质量封面图(~20kb)"}</li>
+					<li>{"默认上传不带文字的版本"}</li>
 				</Dialog.Description>
 				<div className="grid grid-cols-3 gap-2">
 					{selectedClips.map(clip => (

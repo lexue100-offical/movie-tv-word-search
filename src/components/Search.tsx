@@ -16,6 +16,7 @@ export const Search = () => {
 	const { queryClient } = trpc.useContext();
 	const onSubmit: FormEventHandler = e => {
 		e.preventDefault();
+		console.log(e.defaultPrevented)
 		const cache = queryClient.getQueryCache();
 		console.log(cache);
 		setSearchHistory(s =>
@@ -23,6 +24,7 @@ export const Search = () => {
 		);
 		refetch();
 	};
+	// console.log(searchTerm)
 	return (
 		<form className="flex items-center space-x-2" onSubmit={onSubmit}>
 			<div className="relative">

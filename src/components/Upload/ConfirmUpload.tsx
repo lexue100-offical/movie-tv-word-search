@@ -16,17 +16,15 @@ export const ConfirmUpload = () => {
 		);
 	};
 
-	return (
+	return isSuccess || isError ? (
+		<button className="btn">{isError ? "重新上传" : "上传成功"}</button>
+	) : (
 		<button
-			disabled={clips.length === 0 || isLoading || isSuccess}
-			className={cn(
-				isSuccess && "!btn-success",
-				"flex items-center btn disabled:btn-disabled"
-			)}
+			disabled={clips.length === 0 || isLoading}
+			className="flex items-center btn btn-info disabled:btn-disabled"
 			onClick={uploadVideos}
 		>
-			{isError ? "上传失败" : isSuccess ? "上传成功" : "上传视频"}
-			{isLoading && <Loader className="ml-1" />}
+			确认上传 {isLoading && <Loader className="ml-1" />}
 		</button>
 	);
 };
