@@ -31,19 +31,18 @@ export const Footer = () => {
 			<input
 				disabled={!data || pageNum === 0}
 				type="radio"
-				name="options"
 				checked={false}
 				data-title="上一页"
 				className="btn"
 				onClick={fetchPreviousPage}
 			/>
-			{data?.count &&
+			{data?.count !== undefined &&
+				data.count > 0 &&
 				Math.floor(data.count / pageNum) > 0 &&
 				getPages(data.count, pageNum).map((p, index) => (
 					<input
 						key={index}
 						type="radio"
-						name="options"
 						value={p + 1}
 						data-title={p + 1}
 						className={cn(
@@ -56,7 +55,6 @@ export const Footer = () => {
 			<input
 				disabled={!data}
 				type="radio"
-				name="options"
 				data-title="下一页"
 				className="btn"
 				onClick={fetchNextPage}

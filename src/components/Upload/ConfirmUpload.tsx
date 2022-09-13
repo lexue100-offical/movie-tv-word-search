@@ -1,9 +1,10 @@
 import { useUploadVideos } from "@requests";
 import { useStore } from "@store";
 import { Loader } from "../Loader";
-import cn from "classnames";
+import { AiOutlineCheck } from "react-icons/ai";
+import { MdRefresh } from "react-icons/md";
 
-export const ConfirmUpload = () => {
+export const ConfirmUpload = ({ closeDialog }: { closeDialog: () => void }) => {
 	const { mutate, isLoading, isSuccess, isError } = useUploadVideos();
 	const clips = useStore(s => s.selectedClips);
 	const classId = useStore(s => s.videoClass?.ClassId);
@@ -19,7 +20,11 @@ export const ConfirmUpload = () => {
 	};
 
 	return isSuccess || isError ? (
-		<button className="btn">{isError ? "重新上传" : "上传成功"}</button>
+		isError ? (
+			<ErrorButton retry={uploadVideos} />
+		) : (
+			<SuccessButton closeDialog={closeDialog} />
+		)
 	) : (
 		<button
 			autoFocus
@@ -31,3 +36,16 @@ export const ConfirmUpload = () => {
 		</button>
 	);
 };
+
+const SuccessButton = ({ closeDialog }: { closeDialog: () => void }) => (
+	<button className="btn btn-outline btn-success" onClick={closeDialog}>
+		上传成功
+		<AiOutlineCheck className="ml-1" />
+	</button>
+);
+
+const ErrorButton = ({ retry }: { retry: () => void }) => (
+	<button className="btn btn-outline btn-error group" onClick={retry}>
+		重新上传 <MdRefresh className="group-hover:animate-spin ml-1" />
+	</button>
+);

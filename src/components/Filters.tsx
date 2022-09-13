@@ -1,7 +1,7 @@
 import { Menu } from "@headlessui/react";
 import { useReducer } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AiOutlineFilter } from "react-icons/ai";
+import { TbFilter } from "react-icons/tb";
 
 export const Filters = () => {
 	const [showMenuItems, toggleShowMenuItems] = useReducer(s => !s, false);
@@ -9,11 +9,11 @@ export const Filters = () => {
 	return (
 		<Menu as="div" className="relative bg-slate-100 z-10">
 			<Menu.Button
-				className="btn btn-info text-cyan-800 disabled:btn-disabled"
+				className="btn btn-info text-info-content disabled:btn-disabled"
 				onClick={toggleShowMenuItems}
 			>
 				增加过滤条件
-				<AiOutlineFilter className="ml-1 h-4 w-4" />
+				<TbFilter className="ml-1 h-4 w-4" />
 			</Menu.Button>
 			<AnimatePresence>
 				{showMenuItems && (

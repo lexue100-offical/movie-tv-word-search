@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@headlessui/react': ^1.7.0
+  '@headlessui/react': ^1.7.1
   '@headlessui/tailwindcss': ^0.1.1
   '@next-auth/prisma-adapter': ^1.0.4
   '@prisma/client': ^4.3.1
@@ -37,7 +37,7 @@ specifiers:
   zustand: ^4.1.1
 
 dependencies:
-  '@headlessui/react': 1.7.0_biqbaboplfbrettd7655fr4n2y
+  '@headlessui/react': 1.7.1_biqbaboplfbrettd7655fr4n2y
   '@headlessui/tailwindcss': 0.1.1_25hquoklqeoqwmt7fwvvcyxm5e
   '@next-auth/prisma-adapter': 1.0.4_bwhncj256yar2zz55r2fl3abo4
   '@prisma/client': 4.3.1_prisma@4.3.1
@@ -141,8 +141,8 @@ packages:
       - supports-color
     dev: true
 
-  /@headlessui/react/1.7.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-/nDsijOXRwXVLpUBEiYuWguIBSIN3ZbKyah+KPUiD8bdIKtX1U/k+qLYUEr7NCQnSF2e4w1dr8me42ECuG3cvw==}
+  /@headlessui/react/1.7.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-vnRlB71kvEr3y26Lm1WpCiMML8n5JcJ7jK5+vaF0hGTZFArW206j61meVemXkTOuGLhmyWe6yj3OETzsxHoryQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18

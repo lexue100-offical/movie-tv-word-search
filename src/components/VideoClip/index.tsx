@@ -25,18 +25,18 @@ export const VideoClip = (clip: ClipWithStateProps) => {
 			>
 				<SelectCheckbox {...clip} />
 				<div className="relative">
-					<div className="absolute top-0 left-0 text-lg opacity-75 bg-slate-800 text-white">
+					<p className="absolute top-0 left-0 opacity-75 bg-slate-800 text-white">
 						{videoTitle}
-					</div>
+					</p>
 					<Video
 						textMp4={textMp4}
 						mp4={mp4}
 						jpg={jpg}
 						className="rounded-sm aspect-video"
 					/>
-					<div className="absolute bottom-0 left-0 truncate max-w-full text-white">
+					<p className="absolute bottom-0 left-0 truncate max-w-full text-white">
 						{transcript}
-					</div>
+					</p>
 				</div>
 				<div className="flex flex-wrap">
 					<div className="flex items-center">

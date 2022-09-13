@@ -8,6 +8,7 @@ type DialogProps = Parameters<typeof Dialog>[0];
 
 export const UploadModal = ({ open, onClose }: DialogProps) => {
 	const selectedClips = useStore(s => s.selectedClips);
+	const closeDialog = () => onClose(false)
 
 	return (
 		<Dialog open={open} onClose={onClose} className="modal modal-open">
@@ -34,12 +35,12 @@ export const UploadModal = ({ open, onClose }: DialogProps) => {
 				</div>
 				<div className="modal-action">
 					<button
-						onClick={() => onClose(false)}
+						onClick={closeDialog}
 						className="btn btn-outline"
 					>
 						取消
 					</button>
-					<ConfirmUpload />
+					<ConfirmUpload closeDialog={closeDialog}/>
 				</div>
 			</Dialog.Panel>
 		</Dialog>
