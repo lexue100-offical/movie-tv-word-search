@@ -3,7 +3,9 @@ import { useStore } from "@store";
 import { Video } from "../VideoClip/Video";
 import { ConfirmUpload } from "./ConfirmUpload";
 
-export const UploadModal = ({ open, onClose }) => {
+type DialogProps = Parameters<typeof Dialog>[0];
+
+export const UploadModal = ({ open, onClose }: DialogProps) => {
 	const selectedClips = useStore(s => s.selectedClips);
 
 	return (
@@ -28,7 +30,10 @@ export const UploadModal = ({ open, onClose }) => {
 					))}
 				</div>
 				<div className="modal-action">
-					<button onClick={onClose} className="btn btn-outline">
+					<button
+						onClick={() => onClose(false)}
+						className="btn btn-outline"
+					>
 						取消
 					</button>
 					<ConfirmUpload />

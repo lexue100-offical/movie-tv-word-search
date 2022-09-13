@@ -3,7 +3,13 @@ import { useResources } from "@requests";
 const pageNum = 3;
 
 export const Footer = () => {
-	const { fetchPreviousPage, fetchNextPage } = useResources();
+	const { refetch } = useResources();
+	const fetchPreviousPage = () => {
+		refetch();
+	};
+	const fetchNextPage = () => {
+		refetch();
+	};
 
 	return (
 		<footer className="btn-group space-x-4 text-lg">
@@ -12,7 +18,7 @@ export const Footer = () => {
 				name="options"
 				data-title="上一页"
 				className="btn"
-				onClick={() => fetchPreviousPage()}
+				onClick={fetchPreviousPage}
 			/>
 			{new Array(pageNum).fill(0).map((_, index) => (
 				<input
@@ -28,7 +34,7 @@ export const Footer = () => {
 				name="options"
 				data-title="下一页"
 				className="btn"
-				onClick={() => fetchNextPage()}
+				onClick={fetchNextPage}
 			/>
 		</footer>
 	);
