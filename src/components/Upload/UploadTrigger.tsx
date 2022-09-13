@@ -13,7 +13,7 @@ export const UploadTrigger = () => {
 				className="flex items-center btn disabled:btn-disabled"
 				onClick={toggleUploadModal}
 			>
-				{hasSelectedClips ? "请选中视频上传" : "上传选中视频"}
+				{hasSelectedClips ? "请选中视频" : "上传选中视频"}
 			</button>
 			{showUploadModal && (
 				<UploadModal

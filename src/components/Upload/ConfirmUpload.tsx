@@ -9,7 +9,7 @@ export const ConfirmUpload = () => {
 		mutate(
 			clips.map(clip => ({
 				videoUrl: clip.mp4,
-				videoName: clip.transcriptShort,
+				videoName: `${clip.videoTitle}-${clip.transcriptShort}`,
 				coverUrl: clip.jpg,
 			}))
 		);

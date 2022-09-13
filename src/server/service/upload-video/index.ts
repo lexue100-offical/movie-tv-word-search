@@ -19,5 +19,5 @@ const processVideo = async ({
 }: VideoServiceParams) => {
 	const { VodSessionKey } = await applyUpload();
 	await pullUpload({ videoUrl, videoName, coverUrl });
-	const {} = await commitUpload(VodSessionKey);
+	await commitUpload(VodSessionKey);
 };

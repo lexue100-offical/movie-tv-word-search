@@ -9,7 +9,12 @@ export const UploadModal = ({ open, onClose }) => {
 	return (
 		<Dialog open={open} onClose={onClose} className="modal modal-open">
 			<Dialog.Panel className="modal-box max-w-4xl">
-				<Dialog.Title className="text-2xl">确认</Dialog.Title>
+				<Dialog.Title className="text-center text-2xl">
+					{`请确认要上传的视频${selectedClips.length}条`}
+				</Dialog.Title>
+				<Dialog.Description className="text-lg">
+					{"默认上传标题为'标题-内容'的形式"}
+				</Dialog.Description>
 				<div className="grid grid-cols-3 gap-2">
 					{selectedClips.map(clip => (
 						<Video

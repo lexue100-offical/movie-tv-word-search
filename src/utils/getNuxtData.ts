@@ -14,5 +14,5 @@ export function getNuxtData(rawString: string | undefined) {
 	if (data && searchTerm) {
 		dataMap.set(searchTerm, data);
 	}
-	return data?.data[0]?.clips;
+	return { clips: data?.data[0]?.clips, count: data?.data[0]?.hitCount };
 }
