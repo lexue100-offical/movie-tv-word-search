@@ -10,10 +10,11 @@ export const UploadModal = ({ open, onClose }) => {
 		<Dialog open={open} onClose={onClose} className="modal modal-open">
 			<Dialog.Panel className="modal-box max-w-4xl">
 				<Dialog.Title className="text-center text-2xl">
-					{`请确认要上传的视频${selectedClips.length}条`}
+					{`请确认要上传的${selectedClips.length}条视频`}
 				</Dialog.Title>
-				<Dialog.Description className="text-lg">
-					{"默认上传标题为'标题-内容'的形式"}
+				<Dialog.Description className="mt-1 text-lg">
+					<li>{"默认上传标题为'标题-内容'的形式"}</li>
+					<li>{"默认用高质量封面图(~20kb)"}</li>
 				</Dialog.Description>
 				<div className="grid grid-cols-3 gap-2">
 					{selectedClips.map(clip => (
@@ -27,7 +28,7 @@ export const UploadModal = ({ open, onClose }) => {
 					))}
 				</div>
 				<div className="modal-action">
-					<button onClick={onClose} className="btn btn-ghost">
+					<button onClick={onClose} className="btn btn-outline">
 						取消
 					</button>
 					<ConfirmUpload />
