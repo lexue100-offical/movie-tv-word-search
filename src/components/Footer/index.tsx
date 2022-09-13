@@ -1,17 +1,20 @@
 import { useResources } from "@requests";
-
-const pageNum = 3;
+import { useStore } from "@store";
 
 export const Footer = () => {
+	const pageNum = useStore(s => s.pageNum);
+	const setPageNum = useStore(s => s.setPageNum);
 	const { refetch } = useResources();
 	const fetchPreviousPage = () => {
-		refetch();
+		setPageNum(s => s - 1);
+		refetch({});
 	};
 	const fetchNextPage = () => {
+		setPageNum(s => s + 1);
 		refetch();
 	};
 
-	return (
+	return pageNum > 0 ? (
 		<footer className="btn-group space-x-4 text-lg">
 			<input
 				type="radio"
@@ -37,5 +40,5 @@ export const Footer = () => {
 				onClick={fetchNextPage}
 			/>
 		</footer>
-	);
+	) : null;
 };

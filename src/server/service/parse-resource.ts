@@ -26,7 +26,6 @@ export const parseResourceService = async ({
 			p: pageParam,
 		},
 	});
-	console.log(data)
 	// This should return the content inside window.__NUXT__
 	const firstMatch = data.match(NUXT_REGEX)?.[0]?.replace(/<\/script>/, "");
 

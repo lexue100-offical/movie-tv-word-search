@@ -5,6 +5,8 @@ import type { Clip } from "../types/nuxt-data";
 type Store = {
 	searchTerm: string;
 	setSearchTerm: (input: string) => void;
+	pageNum: number;
+	setPageNum: (updater: (previousPageNum: number) => number | number) => void;
 	selectedClips: Clip[];
 	addClip: (clip: Clip) => void;
 	removeClip: (uuid: string) => void;
@@ -17,6 +19,14 @@ export const useStore = create<Store>()(
 			set(() => ({
 				searchTerm: input,
 			})),
+		pageNum: 0,
+		setPageNum: updater =>
+			set(({ pageNum }) => {
+				if (typeof updater === "function") {
+					return { pageNum: updater(pageNum) };
+				}
+				return { pageNum: updater };
+			}),
 		selectedClips: [],
 		addClip: (clip: Clip) =>
 			set(({ selectedClips }) => ({

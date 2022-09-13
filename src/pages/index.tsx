@@ -5,11 +5,13 @@ import { useResources } from "../requests";
 
 const Home: NextPage = () => {
 	const { data } = useResources();
+	const hasVideo = !!(data && data.clips?.length)
 	const selectedClips = useStore(s => s.selectedClips);
+
 
 	return (
 		<main className="bg-slate-50 container mx-auto flex flex-col items-center justify-center min-h-screen px-2 py-3 space-y-2">
-			<Header />
+			<Header hasVideo={hasVideo} />
 			{data?.clips && (
 				<div className="rounded grid grid-cols-4 gap-3">
 					{data.clips.map(clip => (
