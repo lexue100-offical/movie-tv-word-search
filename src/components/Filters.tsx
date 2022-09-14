@@ -1,45 +1,61 @@
-import { Menu } from "@headlessui/react";
-import { useReducer } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 import { TbFilter } from "react-icons/tb";
+import { FilterItem, type FilterItemProps } from "./FilterItem";
+
+const FILTER_ITEMS: FilterItemProps[] = [
+	{
+		selectorName: "isShow",
+		title: "不显示Show(电视剧)",
+	},
+	{
+		selectorName: "isMovie",
+		title: "不显示Movie(电影)",
+	},
+	{
+		selectorName: "isMusic",
+		title: "不显示Music(音乐)",
+	},
+	{
+		selectorName: "isMeme",
+		title: "不显示Meme(梗图)",
+	},
+];
 
 export const Filters = () => {
-	const [showMenuItems, toggleShowMenuItems] = useReducer(s => !s, false);
-
 	return (
 		<Menu as="div" className="relative bg-slate-100 z-10">
-			<Menu.Button
-				className="btn btn-info text-info-content disabled:btn-disabled"
-				onClick={toggleShowMenuItems}
-			>
-				增加过滤条件
-				<TbFilter className="ml-1 h-4 w-4" />
-			</Menu.Button>
-			<AnimatePresence>
-				{showMenuItems && (
-					<Menu.Items
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						as={motion.ul}
-						className="absolute menu menu-compact lg:menu-normal bg-base-100 w-56 p-2 rounded-box"
-						static
+			{({ open }) => (
+				<>
+					<Menu.Button className="btn btn-info text-info-content disabled:btn-disabled">
+						增加过滤条件
+						<TbFilter className="ml-1 h-4 w-4" />
+					</Menu.Button>
+					<Transition
+						show={open}
+						as={Fragment}
+						enter="transition duration-100 ease-out"
+						enterFrom="scale-95 opacity-0"
+						enterTo="scale-100 opacity-100"
+						leave="transition duration-750 ease-out"
+						leaveFrom="scale-100 opacity-100"
+						leaveTo="scale-95 opacity-0"
 					>
-						<Menu.Item as="li">
-							<span>{"仅显示Meme(梗图)"}</span>
-						</Menu.Item>
-						<Menu.Item as="li">
-							<span>{"仅显示Show(电视剧)"}</span>
-						</Menu.Item>
-						<Menu.Item as="li">
-							<span>{"仅显示Movie(电影)"}</span>
-						</Menu.Item>
-						<Menu.Item as="li">
-							<span>{"仅显示Music(音乐)"}</span>
-						</Menu.Item>
-					</Menu.Items>
-				)}
-			</AnimatePresence>
+						<Menu.Items
+							as="ul"
+							className="absolute menu menu-compact lg:menu-normal bg-base-100 p-2 rounded-box shadow w-max"
+						>
+							{FILTER_ITEMS.map(item => (
+								<FilterItem
+									key={item.selectorName}
+									{...item}
+									className="flex ui-active:bg-sky-400"
+								/>
+							))}
+						</Menu.Items>
+					</Transition>
+				</>
+			)}
 		</Menu>
 	);
 };

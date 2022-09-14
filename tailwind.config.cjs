@@ -6,8 +6,11 @@ module.exports = {
 	content: ["./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
-			boxShadow: {
-				glow: "0 0 0 3px rgba(9, 105, 218, 0.3)",
+			boxShadow: ({ colors, rgb }) => ({
+				glow: `0 0 0 3px ${colors}`,
+			}),
+			transitionDuration: {
+				750: 750,
 			},
 		},
 	},

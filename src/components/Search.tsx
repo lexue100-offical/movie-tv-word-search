@@ -37,7 +37,7 @@ export const Search = () => {
 							<Combobox.Input
 								type="text"
 								autoFocus
-								className="px-2 py-1 input input-primary text-lg focus:outline-none focus:shadow-glow"
+								className="px-2 py-1 input input-primary text-lg focus:outline-none focus:shadow-glow focus:shadow-sky-200"
 								value={searchTerm}
 								onChange={e => setSearchTerm(e.target.value)}
 							/>

@@ -1,11 +1,10 @@
-import shallow from "zustand/shallow";
-import { useStore } from "@store";
 import type { Clip } from "../../types/nuxt-data";
 import { VideoContextProvider } from "./VideoContext";
 import { SelectCheckbox } from "./SelectCheckbox";
 import { VideoControls } from "./Controls";
 import cn from "classnames";
 import { Video } from "./Video";
+import { motion } from "framer-motion";
 
 export interface ClipWithStateProps extends Clip {
 	isSelected: boolean;
@@ -17,7 +16,8 @@ export const VideoClip = (clip: ClipWithStateProps) => {
 
 	return (
 		<VideoContextProvider>
-			<div
+			<motion.div
+				layout
 				className={cn(
 					"relative rounded-sm space-y-1 p-1 bg-slate-100",
 					isSelected && "outline outline-2 outline-slate-500 shadow"
@@ -43,7 +43,7 @@ export const VideoClip = (clip: ClipWithStateProps) => {
 						<VideoControls />
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</VideoContextProvider>
 	);
 };
