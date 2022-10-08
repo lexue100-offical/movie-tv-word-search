@@ -10,7 +10,7 @@ export const UploadClassSelector = () => {
 	const videoClass = useStore(s => s.videoClass);
 	const setVideoClass = useStore(s => s.setVideoClass);
 	const processedData = filter
-		? data?.filter(v => v.ClassName.includes("英语"))
+		? data?.filter(v => v.ClassName.includes("小初高词汇视频"))
 		: data;
 	const FilterComponent = filter ? TbFilterOff : TbFilter;
 
