@@ -10,6 +10,7 @@ interface VideoServiceParams {
 }
 
 export const uploadVideoService = async (videos: VideoServiceParams[]) => {
+	console.log(videos)
 	return Promise.all(videos.map(video => processVideo(video)));
 };
 

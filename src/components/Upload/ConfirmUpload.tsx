@@ -8,15 +8,16 @@ export const ConfirmUpload = ({ closeDialog }: { closeDialog: () => void }) => {
 	const { mutate, isLoading, isSuccess, isError } = useUploadVideos();
 	const clips = useStore(s => s.selectedClips);
 	const classId = useStore(s => s.videoClass?.ClassId);
+	console.log({classId})
 	const uploadVideos = () => {
-		mutate(
-			clips.map(clip => ({
-				videoUrl: clip.mp4,
-				videoName: `${clip.videoTitle}-${clip.transcriptShort}`,
-				coverUrl: clip.jpgMed,
-				classId,
-			}))
-		);
+		console.log(classId)
+		const videos = clips.map(clip => ({
+			videoUrl: clip.mp4,
+			videoName: `${clip.videoTitle}-${clip.transcriptShort}`,
+			coverUrl: clip.jpgMed,
+			classId,
+		}));
+		mutate(videos);
 	};
 
 	return isSuccess || isError ? (
